@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import './App.css'
 import { Display } from './Display'
-import { IncButton } from './IncButton'
-import { ResetButton } from './ResetButton'
+import { Buttons } from './Buttons'
+import { ButtonsType } from './Buttons'
 
 function App () {
   // BLL
@@ -21,7 +21,7 @@ function App () {
         setStopInc(true)
       }
     }
-    if (counter> 0) {
+    if (counter > 0) {
       setStopRes(false)
     }
   }
@@ -32,13 +32,30 @@ function App () {
     setStopInc(false)
     setStopRes(true)
   }
+
+  let [buttons, setButtons] = useState<Array<ButtonsType>>([
+    {
+      id: 1,
+      title: 'inc'
+    },
+    {
+      id: 2,
+      title: 'res'
+    }
+  ])
+
   //UI
   return (
     <div className='App'>
       <Display counter={counter} error={error} />
-      <div className='buttonContainer'>
-        <IncButton incrementCounter={incrementCounter} stopInc={stopInc} />
-        <ResetButton resetCounter={resetCounter} stopRes={stopRes} />
+      <div>
+        <Buttons
+          buttons={buttons}
+          incrementCounter={incrementCounter}
+          stopInc={stopInc}
+          resetCounter={resetCounter}
+          stopRes={stopRes}
+        />
       </div>
     </div>
   )
