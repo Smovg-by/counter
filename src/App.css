@@ -1,38 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
 .App {
+  height: 200px;
+  width: 300px;
+
+  margin: 100px auto 0 auto;
+
+  border: 2px solid lightseagreen;
+  border-radius: 10px;
+}
+
+.display {
+  width: 280px;
+  height: 100px;
+  border-radius: 10px;
+  margin: 10px auto 10px auto;
+  background-color: lightseagreen;
+  border-radius: 10px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 100px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.displayError {
+  width: 280px;
+  height: 100px;
+  border-radius: 10px;
+  margin: 10px auto 10px auto;
+  background-color: lightseagreen;
+  border-radius: 10px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 100px;
+  color: red;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.buttonContainer {
+  width: 280px;
+  height: 70px;
+  margin: 0 auto;
+  border: 2px solid lightseagreen;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.incButton {
+  width: 120px;
+  height: 50px;
+  display: inline-block;
+  background-color: lightseagreen;
+  border-radius: 10px;
+  color: black;
+  font-size: 26px;
+  line-height: 50px;
+  font-weight: 700;
+  text-align: center;
+}
+.incButtonStop {
+  width: 120px;
+  height: 50px;
+  display: inline-block;
+  opacity: 0.3;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  font-size: 26px;
+  line-height: 50px;
+  font-weight: 700;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.incButton:hover {
+  cursor: pointer;
+}
+
+.resetButton {
+  width: 120px;
+  height: 50px;
+  display: inline-block;
+  background-color: lightseagreen;
+  border-radius: 10px;
+  color: black;
+  font-size: 26px;
+  line-height: 50px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.resetButtonStop {
+  width: 120px;
+  height: 50px;
+  display: inline-block;
+  background-color: lightseagreen;
+  border-radius: 10px;
+  border: none;
+  color: black;
+  opacity: 0.3;
+  font-size: 26px;
+  line-height: 50px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.resetButton:hover {
+  cursor: pointer;
 }
