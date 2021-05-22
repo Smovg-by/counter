@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-
+import { useState } from 'react'
 import './App.css'
 import { Display } from './Display'
 import { Buttons } from './Buttons'
@@ -12,11 +11,13 @@ function App () {
   let [stopInc, setStopInc] = useState<boolean>(false)
   let [stopRes, setStopRes] = useState<boolean>(true)
 
+  let maxVal: number = 5
+
   function incrementCounter () {
-    if (counter < 5) {
-      counter++
-      setCounter(counter)
-      if (counter === 5) {
+    if (counter < maxVal) {
+
+      setCounter(counter+1)
+      if (counter === maxVal) {
         setError(true)
         setStopInc(true)
       }
