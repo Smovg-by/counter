@@ -1,5 +1,7 @@
 type SettingsDisplayPropsType = {
   onChangeHandler: (event: any) => void
+  maxValue: number
+  startValue: number
 }
 
 export function SettingsDisplay (props: SettingsDisplayPropsType) {
@@ -11,6 +13,7 @@ export function SettingsDisplay (props: SettingsDisplayPropsType) {
       <div>
         <span className={'settingsDescription'}>max value</span>
         <input
+          value={props.maxValue}
           name='maxValue'
           type='number'
           className={'inputArea'}
@@ -20,6 +23,7 @@ export function SettingsDisplay (props: SettingsDisplayPropsType) {
       <div>
         <span className={'settingsDescription'}>start value</span>
         <input
+          value={props.startValue}
           name='startValue'
           type='number'
           className={'inputArea'}
