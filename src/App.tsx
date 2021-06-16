@@ -1,62 +1,71 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import './App.css'
-import { Display } from './Display'
-import { Buttons } from './Buttons'
-import { ButtonsType } from './Buttons'
+import { CounterDisplay } from './components/CounterDisplay'
+import { IncResButtons } from './components/IncResButtons'
+import { SetButton } from './components/SetButton'
+import { SettingsDisplay } from './components/SettingsDisplay'
+import { rootReducer } from './redux/rootReducer'
+import { StateType, StoreType } from './redux/store'
 
-function App () {
+type AppPropsType = {
+  store: StoreType
+}
+
+function App (props: AppPropsType) {
   // BLL
-  let [counter, setCounter] = useState<number>(0)
-  let [error, setError] = useState<boolean>(false)
-  let [stopInc, setStopInc] = useState<boolean>(false)
-  let [stopRes, setStopRes] = useState<boolean>(true)
+  const initialState: StateType = props.store.getState()
 
-  let maxVal: number = 5
+  const [state, dispatch] = useReducer(rootReducer, initialState)
 
-  function incrementCounter () {
-    if (counter < maxVal) {
-
-      setCounter(counter+1)
-      if (counter === maxVal) {
-        setError(true)
-        setStopInc(true)
-      }
-    }
-    if (counter > 0) {
-      setStopRes(false)
-    }
+  const incrementHandler = () => {
+    dispatch({ type: 'INCREMENT' })
+  }
+  const resetHandler = () => {
+    dispatch({ type: 'RESET' })
   }
 
-  function resetCounter () {
-    setCounter(0)
-    setError(false)
-    setStopInc(false)
-    setStopRes(true)
-  }
+  const incrementDisabled: boolean = state.currentValue >= state.maxValue
+  const resetDisabled: boolean = state.currentValue >= state.startValue
 
-  let [buttons, setButtons] = useState<Array<ButtonsType>>([
-    {
-      id: 1,
-      title: 'inc'
-    },
-    {
-      id: 2,
-      title: 'res'
-    }
-  ])
+  const [values, setValues] = useState({
+    maxValue: state.maxValue,
+    startValue: state.startValue
+  })
+
+  const onChangeHandler = (event: any) => {
+    setValues({
+      ...values,
+      [event.currentTarget.name]: event.currentTarget.value
+    })
+  }
+  const currentValue = state.currentValue
+  const maxValue = +values.maxValue
+  const startValue = +values.startValue
+
+  const setValueHandler = () => {
+    dispatch({ type: 'SET_VALUE', currentValue, maxValue, startValue })
+  }
 
   //UI
   return (
     <div className='App'>
-      <Display counter={counter} error={error} />
-      <div>
-        <Buttons
-          buttons={buttons}
-          incrementCounter={incrementCounter}
-          stopInc={stopInc}
-          resetCounter={resetCounter}
-          stopRes={stopRes}
-        />
+      <div className='container'>
+        <CounterDisplay state={state} />
+        <div>
+          <IncResButtons
+            incrementHandler={incrementHandler}
+            resetHandler={resetHandler}
+            incrementDisabled={incrementDisabled}
+            resetDisabled={!resetDisabled}
+          />
+        </div>
+      </div>
+
+      <div className='container'>
+        <SettingsDisplay onChangeHandler={onChangeHandler} />
+        <div>
+          <SetButton setValueHandler={setValueHandler} />
+        </div>
       </div>
     </div>
   )

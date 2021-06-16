@@ -7,40 +7,43 @@ body {
 }
 
 .App {
-  height: 200px;
-  width: 300px;
+  margin: auto auto;
+  border: 1px solid red;
+  min-height: 100vh;
+  min-width: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 
-  margin: 100px auto 0 auto;
+}
+
+.container {
+  height: 300px;
+  width: 300px;
 
   border: 2px solid lightseagreen;
   border-radius: 10px;
 }
 
-.display {
-  width: 280px;
-  height: 100px;
-  border-radius: 10px;
-  margin: 10px auto 10px auto;
-  background-color: lightseagreen;
-  border-radius: 10px;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 100px;
-  text-align: center;
+.displayRed {
+  color: red
 }
 
-.displayError {
+.display {
   width: 280px;
-  height: 100px;
+  height: 200px;
   border-radius: 10px;
   margin: 10px auto 10px auto;
   background-color: lightseagreen;
   border-radius: 10px;
-  font-size: 40px;
+  font-size: 60px;
   font-weight: 700;
-  line-height: 100px;
-  color: red;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .buttonContainer {
@@ -51,11 +54,23 @@ body {
   border-radius: 10px;
   padding: 0 10px 0 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
-.incButton {
+.inputArea {
+  font-size: 20px;
+  background-color: rgb(142, 236, 232);
+  display: inline-block;
+  width: 150px;
+}
+
+.settingsDescription {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.button {
   width: 120px;
   height: 50px;
   display: inline-block;
@@ -67,52 +82,11 @@ body {
   font-weight: 700;
   text-align: center;
 }
-.incButtonStop {
-  width: 120px;
-  height: 50px;
-  display: inline-block;
-  opacity: 0.3;
-  border: none;
-  border-radius: 10px;
-  color: black;
-  font-size: 26px;
-  /* line-height: 50px; */
-  font-weight: 700;
-  text-align: center;
-}
 
-.incButton:hover {
+.button:hover {
   cursor: pointer;
 }
 
-.resetButton {
-  width: 120px;
-  height: 50px;
-  display: inline-block;
-  background-color: lightseagreen;
-  border-radius: 10px;
-  color: black;
-  font-size: 26px;
-  /* line-height: 40px; */
-  font-weight: 700;
-  text-align: center;
-}
-
-.resetButtonStop {
-  width: 120px;
-  height: 50px;
-  display: inline-block;
-  background-color: lightseagreen;
-  border-radius: 10px;
-  border: none;
-  color: black;
-  opacity: 0.3;
-  font-size: 26px;
-  /* line-height: 50px; */
-  font-weight: 700;
-  text-align: center;
-}
-
-.resetButton:hover {
-  cursor: pointer;
+.disabled {
+  opacity: 0.5
 }
