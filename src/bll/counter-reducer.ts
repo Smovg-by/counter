@@ -100,16 +100,16 @@ export function counterReducer(state: initialStateType = initialState, action: A
 // THUNK
 // THUNK Creator
 
-export const incValuesTC = () => (dispatch: Dispatch, getState: () => AppStateType) => {
-  let actualValue = getState().counter.currentValue
-  localStorage.setItem('counterValue', JSON.stringify(actualValue + 1))
-  dispatch(increment())
-}
+// export const incValuesTC = () => (dispatch: Dispatch, getState: () => AppStateType) => {
+//   let actualValue = getState().counter.currentValue
+//   localStorage.setItem('counterValue', JSON.stringify(actualValue + 1))
+//   dispatch(increment())
+// }
 
-export const setValueFromLocalStorageTC = () => (dispatch: Dispatch) => {
-  let valueAsString = localStorage.getItem('counterValue')
-  if (valueAsString) {
-    let newValue = JSON.parse(valueAsString)
-    dispatch(setValueFromLocalSorage(newValue))
-  }
-}
+// export const setValueFromLocalStorageTC = () => (dispatch: Dispatch) => {
+//   let valueAsString = localStorage.getItem('counterValue')
+//   if (valueAsString) {
+//     let newValue = JSON.parse(valueAsString)
+//     dispatch(setValueFromLocalSorage(newValue))
+//   }
+// }

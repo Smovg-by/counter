@@ -6,7 +6,7 @@ import { SettingsDisplay } from './components/SettingsDisplay'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from './bll/redux-store'
-import { incValuesTC, initialStateType, reset, setValue, setValueFromLocalStorageTC } from './bll/counter-reducer'
+import { increment, initialStateType, reset, setValue } from './bll/counter-reducer'
 
 
 
@@ -16,14 +16,14 @@ function App() {
   // BLL
 
   useEffect(() => {
-    dispatch(setValueFromLocalStorageTC())
+    // dispatch(setValueFromLocalStorageTC())
   }, [])
 
   const state = useSelector<AppStateType, initialStateType>(state => state.counter)
   const dispatch = useDispatch()
 
   const incrementHandler = () => {
-    dispatch(incValuesTC())
+    dispatch(increment())
   }
   const resetHandler = () => {
     dispatch(reset())
