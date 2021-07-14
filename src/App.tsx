@@ -1,27 +1,32 @@
-import React, { useReducer, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CounterDisplay } from './components/CounterDisplay'
 import { IncResButtons } from './components/IncResButtons'
 import { SetButton } from './components/SetButton'
 import { SettingsDisplay } from './components/SettingsDisplay'
-import { rootReducer } from './redux/rootReducer'
-import { StateType, StoreType } from './redux/store'
 import './App.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppStateType } from './bll/redux-store'
+import { incValuesTC, initialStateType, reset, setValue, setValueFromLocalStorageTC } from './bll/counter-reducer'
 
-type AppPropsType = {
-  store: StoreType
-}
 
-function App (props: AppPropsType) {
+
+
+function App() {
+
   // BLL
-  const initialState: StateType = props.store.getState()
 
-  const [state, dispatch] = useReducer(rootReducer, initialState)
+  useEffect(() => {
+    dispatch(setValueFromLocalStorageTC())
+  }, [])
+
+  const state = useSelector<AppStateType, initialStateType>(state => state.counter)
+  const dispatch = useDispatch()
 
   const incrementHandler = () => {
-    dispatch({ type: 'INCREMENT' })
+    dispatch(incValuesTC())
   }
   const resetHandler = () => {
-    dispatch({ type: 'RESET' })
+    dispatch(reset())
   }
 
   const incrementDisabled: boolean = state.currentValue >= state.maxValue
@@ -62,7 +67,7 @@ function App (props: AppPropsType) {
 
   const setValueHandler = () => {
     setNoteMessage(false)
-    dispatch({ type: 'SET_VALUE', currentValue, maxValue, startValue })
+    dispatch(setValue(currentValue, maxValue, startValue))
   }
 
   //UI
@@ -91,7 +96,9 @@ function App (props: AppPropsType) {
           startValue={values.startValue}
         />
         <div>
-          <SetButton setValueHandler={setValueHandler} />
+          <SetButton
+            setValueHandler={setValueHandler}
+          />
         </div>
       </div>
     </div>

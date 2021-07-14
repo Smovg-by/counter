@@ -1,19 +1,20 @@
-import { StateType } from '../redux/store'
+import { initialStateType } from '../bll/counter-reducer'
 
 type CounterDisplayPropsType = {
-  state: StateType
+
+  state: initialStateType
   noteMessage: boolean
   errorMessage: boolean
 }
 
-export function CounterDisplay (props: CounterDisplayPropsType) {
+export function CounterDisplay(props: CounterDisplayPropsType) {
   //BLL
   let currentValue = props.state.currentValue
   let maxValue = props.state.maxValue
   let noteText: string = 'Press SET to proceed'
   let errorText: string = 'Incorrect value!'
 
-  function displayValueSelector () {
+  function displayValueSelector() {
     if (props.noteMessage) {
       return <span className={'noteMessage'}>{noteText}</span>
     } else if (props.errorMessage) {
